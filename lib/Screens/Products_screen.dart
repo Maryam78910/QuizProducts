@@ -14,8 +14,7 @@ class ProductsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Products"),
       ),
-    //provider
-      
+
       body: Consumer<ProductsProvider>(builder: (context, value, child) {
 
         final productpro=value.productdata;
