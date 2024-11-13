@@ -1,16 +1,12 @@
-class UserModelSignip
+class UserModel
 {
-  String name;
-  String phone;
-  String email;
-  String password;
+  bool state;
   
-  UserModelSignip({required this.email,required this.name,required this.password,required this.phone});
+  UserModel({required this.state});
   
-  factory UserModelSignip.fromJson(Map<String,dynamic>json)
+  factory UserModel.fromJson(Map<String,dynamic>json)
   {
-    return UserModelSignip(
-        email: json["email"], name: json["name"], password: json["password"], phone: json["phone"]);
+    return UserModel(state: json['state']);
 
   }
 }

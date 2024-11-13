@@ -38,9 +38,10 @@ class ProductsPage extends StatelessWidget {
 
               ),
               itemBuilder: (context, index) => ProductItem(
-                  name:productpro.Products.elementAt(index),
-                  image: productpro.Products.elementAt(index),
-                  price: productpro.Products.elementAt(index)
+
+                  name:productpro.Products[index]['name'],
+                  image: productpro.Products[index]['image'],
+                  price: productpro.Products[index]['price'],
 
               ),
               itemCount: productpro.Products.length,

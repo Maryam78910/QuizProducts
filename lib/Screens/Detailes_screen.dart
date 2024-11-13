@@ -24,7 +24,7 @@ class DetailesPage extends StatelessWidget {
       body: Card(
       child: Column(
          children: [
-        Text('${image}'),
+        Text(image),
 
        SizedBox(height: 20,),
          Text(name),

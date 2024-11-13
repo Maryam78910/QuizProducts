@@ -16,8 +16,6 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final LoginPro=Provider.of<LoginProvider>(context);
-    final SignupPro=Provider.of<SignupProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("Login"),
@@ -79,27 +77,37 @@ class LoginPage extends StatelessWidget {
             ),
           ),
 
-          ElevatedButton(
-            onPressed:()
-            {
-              if(formkey.currentState!.validate())
-              {
-                LoginPro.fetchdataLogin(
-                    textemaill.text, textpasswordl.text,);
+          Consumer<LoginProvider>(
+            builder: (context, value, child) {
 
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(SnackBar(content: Text("Login succsess")));
-
-                Navigator.push(context, MaterialPageRoute(builder: (context) =>ProductsPage() ,));
-              }
-              else
+            return ElevatedButton(
+              onPressed:()async
               {
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(SnackBar(content: Text("Invalid Login")));
-              }
-            },
-            child: Text("Login"),
-          ),
+                if(formkey.currentState!.validate())
+                {
+                  await value.fetchdataLogin(textemaill.text, textpasswordl.text);
+
+                  if(value.state==true)
+                    {
+
+                       Navigator.push(context, MaterialPageRoute(builder: (context) =>ProductsPage() ,));
+                    }
+                  else
+                    {
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(SnackBar(content: Text("the user not found")));
+
+                    }
+                }
+                else
+                {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text("Invalid Login")));
+                }
+              },
+              child: Text("Login"),
+            );
+          }),
 
         ],
       ),
