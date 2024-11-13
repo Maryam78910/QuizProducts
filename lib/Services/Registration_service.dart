@@ -7,22 +7,22 @@ class SignupService
 {
   static Dio dio=Dio();
   
-  static Future<void>regisetdata(UserModelSignip user)async
+  static Future<void>regisetdata(String phone,String name,String email,String password)async
   {
     try
         {
           Response response =await dio.post('https://student.valuxapps.com/api/register',
             data: {
-            user.phone,
-              user.name,
-              user.email,
-              user.password,
+            "name":name,
+              "phone":phone,
+              "password":password,
+              "email":email,
             }
           );
 
           if(response.statusCode==200)
             {
-              print('${response.data}');
+              print(response.data);
 
             }
 
